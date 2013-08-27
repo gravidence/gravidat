@@ -1,0 +1,7 @@
+{
+    "views": {
+        "username": {
+            "map": "function(doc) { if(doc.username) { emit(doc.username, null); } }"
+        }
+    }
+}
