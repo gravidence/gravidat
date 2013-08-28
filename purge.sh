@@ -20,25 +20,24 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 
-#!/bin/bash
-echo "Clear Gravifon DB script"
+#!/bin/sh
+echo "Purge Gravifon DB script"
 echo "2013 Gravidence"
 
+LOCAL_DATABASE_INSTANCE="http://localhost:5984"
+
 echo
-read -p "Enter URL to Gravifon DB instance: " dbInstance
+read -p "Enter URL to Gravifon DB instance [ $LOCAL_DATABASE_INSTANCE ]: " dbInstance
 
 if [ -z "$dbInstance" ];
-    then dbInstance="http://localhost:5984";
+    then dbInstance="$LOCAL_DATABASE_INSTANCE";
 fi
 
-databasesDirName="databases"
-designDocumentsDirName="designs"
-
-for database in $(find -path ./$databasesDirName/* -type d -printf "%f\n");
+for database in `find ./* -type d -prune -printf "%f\n"`
 do
     echo
     echo "Deleting /$database database..."
-    curl -X DELETE $dbInstance/$database
+    curl -X DELETE "$dbInstance/$database"
 done
 
 echo
