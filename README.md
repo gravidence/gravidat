@@ -35,10 +35,22 @@ CouchDB initialization scripts and [Erica design documents](https://github.com/b
 Each Gravifon database setup is stored in separate folder. Database has several design documents which are stored in separate subfolders as well. Design document folder content is just an [Erica design document](https://github.com/benoitc/erica#1--about-the-design-doc) project.
 
 #### Manual way
-Navigate to particular design document folder and execute `erica push` command. CouchDB instance URL is specified in `.couchapprc` file.
+Navigate to particular design document folder and execute `erica push http://<host>:<port>/<database>` command.
+
+Alternatively, default CouchDB instance URL could be stored in `.couchapprc` file of particular design document project.
+
+	{
+	    "env": {
+	        "default": {
+	            "db": "http://<host>:<port>/<database>"
+	        }
+	    }
+	}
+
+This way, `erica push` command execution would be enough.
 
 #### Semi-automated way
-Execute `init.sh` script to initialize/update all databases by calling `erica push` for every design document found.  
+Execute `init.sh` script to initialize/update all databases by calling `erica push http://<host>:<port>/<database>` for each design document project found.  
 Execute `purge.sh` script to completely delete all databases.
 
 Both scripts ask for CouchDB instance URL (defaults to http://127.0.0.1:5984).

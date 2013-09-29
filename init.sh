@@ -21,9 +21,10 @@
 # THE SOFTWARE.
 
 #!/bin/sh
-echo "Purge Gravifon DB script"
+echo "Init Gravifon DB script"
 echo "2013 Gravidence"
 
+WORKING_DIR="$PWD"
 LOCAL_DATABASE_INSTANCE="http://127.0.0.1:5984"
 
 echo
@@ -33,11 +34,18 @@ if [ -z "$dbInstance" ];
     then dbInstance="$LOCAL_DATABASE_INSTANCE";
 fi
 
-for database in `find ./* -type d -prune -printf "%f\n"`
+for database in `find $WORKING_DIR/* -type d -prune -printf "%f\n"`
 do
     echo
-    echo "Deleting /$database database..."
-    curl -X DELETE "$dbInstance/$database"
+    echo "Initializing /$database database..."
+    echo "-----------------------------------"
+    echo
+
+    for designDocument in `find $WORKING_DIR/$database/* -type d -prune -printf "%f\n"`
+    do
+        cd "$WORKING_DIR/$database/$designDocument"
+        erica push $dbInstance/$database
+    done
 done
 
 echo
