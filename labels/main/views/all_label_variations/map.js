@@ -1,3 +1,3 @@
 function map(doc) {
-    emit(doc.name, null);
+    emit(doc.name.toLowerCase(), null);
 }
