@@ -2,8 +2,12 @@ Gravidat
 ========
 
 ## Overview
-DDL/DML scripts for [Gravifon](https://github.com/gravidence/gravifon).
-Artifact contains jOOQ database model produced by codegen plugin.
+This project is aimed to provide all needed database facilities for [Gravifon](https://github.com/gravidence/gravifon).
+H2 has been chosen as provider at this stage.
+
+Facilities include:
+* DDL/DML scripts
+* jOOQ codegen goal
 
 ## Requirements
 - Java 8
