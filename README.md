@@ -12,6 +12,7 @@ Facilities include:
 ## Requirements
 - Java 8
 - Maven 3
+- H2 1.4
 
 ## How-To Use
 1. Edit database settings in `pom.properties`
