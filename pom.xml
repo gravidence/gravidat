@@ -54,6 +54,8 @@ THE SOFTWARE.
     </organization>
 
     <properties>
+        <maven.test.skip>true</maven.test.skip>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
 
